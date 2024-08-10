@@ -25,7 +25,7 @@ const options = {
         else
         {
             iziToast.show({
-                iconUrl: '../img/crosscirclelinear_106172.png',
+                iconUrl: '/img/crosscirclelinear_106172.png',
                 message: 'Please choose a date in the future',
                 color: 'red',
     position: 'topRight'        });
