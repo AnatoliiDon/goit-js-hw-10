@@ -14,8 +14,6 @@ const executor = (resolve, reject) => {
     
 }
 const getResult = event => {
-    console.log(delayInput.value);
-console.log(fulfInput.checked);
     event.preventDefault();
     const promise = new Promise(executor);
     promise.then(result => {
