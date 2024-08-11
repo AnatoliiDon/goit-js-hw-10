@@ -1,34 +1,40 @@
 import iziToast from "izitoast";
-// Додатковий імпорт стилів
 import "izitoast/dist/css/iziToast.min.css";
-
 const submitForm = document.querySelector('.form');
 const delayInput = document.querySelector('.delay-input');
 const fulfInput = document.querySelector('.fulf-input');
+const rejInput = document.querySelector('.rej-input');
 
 const executor = (resolve, reject) => {
-    setTimeout(() => {
         if (fulfInput.checked) {
-            resolve();
-        } else {
-            reject();
+            resolve(`✅ Fulfilled promise in ${delayInput.value}ms`);
+        } else if (rejInput.checked){
+            reject(`❌ Rejected promise in ${delayInput.value}ms`);
         }
-    }, delayInput.value);
+    
 }
 const getResult = event => {
+    console.log(delayInput.value);
+console.log(fulfInput.checked);
     event.preventDefault();
     const promise = new Promise(executor);
     promise.then(result => {
-       iziToast.show({
-                message: `✅ Fulfilled promise in ${delayInput.value}ms`,
-                color: 'green',
-    position: 'topRight'}); 
+         setTimeout(() => {
+             iziToast.show({
+                 message: result,
+                 color: 'green',
+                 position: 'topRight',
+             } )
+       }, delayInput.value
+       ); 
     }).catch(err => {
-              iziToast.show({
-                message: `❌ Rejected promise in ${delayInput.value}ms`,
+        setTimeout(() => {
+            iziToast.show({
+                message: err,
                 color: 'red',
-    position: 'topRight'});  
+                position: 'topRight'
+            });
+        }, delayInput.value)
     })
 };
-
 submitForm.addEventListener('submit', getResult);

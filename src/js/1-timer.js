@@ -54,24 +54,25 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 let intervalId = null;
-let isFinish = false;
 const start = () => {
-        startBtn.setAttribute("disabled", ''); 
-        dataInput.setAttribute("disabled", '');
+        startBtn.setAttribute('disabled', ''); 
+        dataInput.setAttribute('disabled', '');
     intervalId = setInterval(() => {
         const deltaTime = userSelectedDate - Date.now();
-            if (deltaTime<0) {
-                isFinish = true;
-                return isFinish;
-        }
+            if (Math.floor(deltaTime/1000)===0) {
+                clearInterval(intervalId);
+                startBtn.removeAttribute('disabled', ''); 
+                dataInput.removeAttribute('disabled', '');
+            }
+        console.log(Math.floor(deltaTime/1000));
         const time = convertMs(deltaTime);
         const addZeroes = addLeadingZero(time);
         updateClock(addZeroes);
     }, 1000);
     
-        if (isFinish) {
-            clearInterval(intervalId);
-    }
+    //     if (isFinish) {
+    //         clearInterval(intervalId);
+    // }
 
 }
 
