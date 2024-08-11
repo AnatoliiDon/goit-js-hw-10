@@ -5,7 +5,10 @@ const delayInput = document.querySelector('.delay-input');
 const fulfInput = document.querySelector('.fulf-input');
 const rejInput = document.querySelector('.rej-input');
 
+let inputValue;
+
 const executor = (resolve, reject) => {
+   inputValue = parseInt(delayInput.value);
         if (fulfInput.checked) {
             resolve(`✅ Fulfilled promise in ${delayInput.value}ms`);
         } else if (rejInput.checked){
@@ -23,7 +26,7 @@ const getResult = event => {
                  color: 'green',
                  position: 'topRight',
              } )
-       }, delayInput.value
+       }, inputValue
        ); 
     }).catch(err => {
         setTimeout(() => {
@@ -32,7 +35,7 @@ const getResult = event => {
                 color: 'red',
                 position: 'topRight'
             });
-        }, delayInput.value)
+        }, inputValue)
     })
 };
 submitForm.addEventListener('submit', getResult);
