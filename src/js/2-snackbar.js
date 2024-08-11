@@ -10,9 +10,9 @@ let inputValue;
 const executor = (resolve, reject) => {
    inputValue = parseInt(delayInput.value);
         if (fulfInput.checked) {
-            resolve(`✅ Fulfilled promise in ${delayInput.value}ms`);
+            resolve(`✅ Fulfilled promise in ${inputValue}ms`);
         } else if (rejInput.checked){
-            reject(`❌ Rejected promise in ${delayInput.value}ms`);
+            reject(`❌ Rejected promise in ${inputValue}ms`);
         }
     
 }
