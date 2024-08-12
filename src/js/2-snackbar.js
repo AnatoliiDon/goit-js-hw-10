@@ -8,34 +8,34 @@ const rejInput = document.querySelector('.rej-input');
 let inputValue;
 
 const executor = (resolve, reject) => {
-   inputValue = parseInt(delayInput.value);
+    inputValue = parseInt(delayInput.value);
         if (fulfInput.checked) {
-            resolve(`✅ Fulfilled promise in ${inputValue}ms`);
-        } else if (rejInput.checked){
-            reject(`❌ Rejected promise in ${inputValue}ms`);
+            setTimeout(() => {
+                resolve(inputValue);
+            }, inputValue);
+        } else if (rejInput.checked) {
+            setTimeout(() => {
+                reject(inputValue);
+                }, inputValue);
         }
-    
 }
 const getResult = event => {
     event.preventDefault();
     const promise = new Promise(executor);
     promise.then(result => {
-         setTimeout(() => {
              iziToast.show({
-                 message: result,
+                 message: `✅ Fulfilled promise in ${result}ms`,
                  color: 'green',
                  position: 'topRight',
              } )
-       }, inputValue
-       ); 
+       
     }).catch(err => {
-        setTimeout(() => {
+        
             iziToast.show({
-                message: err,
+                message: `❌ Rejected promise in ${err}ms`,
                 color: 'red',
                 position: 'topRight'
             });
-        }, inputValue)
     })
 };
 submitForm.addEventListener('submit', getResult);
