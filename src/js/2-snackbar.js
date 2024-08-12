@@ -5,10 +5,10 @@ const delayInput = document.querySelector('.delay-input');
 const fulfInput = document.querySelector('.fulf-input');
 const rejInput = document.querySelector('.rej-input');
 
-let inputValue;
+
 
 const executor = (resolve, reject) => {
-    inputValue = parseInt(delayInput.value);
+ const inputValue = parseInt(delayInput.value);  
         if (fulfInput.checked) {
             setTimeout(() => {
                 resolve(inputValue);
@@ -19,6 +19,7 @@ const executor = (resolve, reject) => {
                 }, inputValue);
         }
 }
+
 const getResult = event => {
     event.preventDefault();
     const promise = new Promise(executor);
