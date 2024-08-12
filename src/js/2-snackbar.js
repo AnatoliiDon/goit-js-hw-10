@@ -7,18 +7,36 @@ const rejInput = document.querySelector('.rej-input');
 
 
 
+// const executor = (resolve, reject) => {
+//  const inputValue = parseInt(delayInput.value);  
+//         if (fulfInput.checked) {
+//             setTimeout(() => {
+//                 resolve(inputValue);
+//             }, inputValue);
+//         } else if (rejInput.checked) {
+//             setTimeout(() => {
+//                 reject(inputValue);
+//                 }, inputValue);
+//         }
+// }
+
+
+
 const executor = (resolve, reject) => {
- const inputValue = parseInt(delayInput.value);  
-        if (fulfInput.checked) {
-            setTimeout(() => {
+    const inputValue = parseInt(delayInput.value);  
+    const fulfCheck = fulfInput.checked;
+    const rejCheck = rejInput.checked;
+    setTimeout(() => {
+        if (fulfCheck) {
                 resolve(inputValue);
-            }, inputValue);
-        } else if (rejInput.checked) {
-            setTimeout(() => {
+         
+        } else if (rejCheck) {
+            
                 reject(inputValue);
-                }, inputValue);
-        }
+               
+        } }, inputValue);
 }
+
 
 const getResult = event => {
     event.preventDefault();
